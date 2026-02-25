@@ -22,7 +22,9 @@ if prompt := st.chat_input("Describe a patient case..."):
 
     with st.chat_message("assistant"):
         with st.spinner("Agent is reasoning..."):
-            response = st.session_state.agent.invoke({"input": prompt})
-            output = response["output"]
+            response = st.session_state.agent.invoke(
+                {"messages": [{"role": "user", "content": prompt}]}
+            )
+            output = response["messages"][-1].content
             st.write(output)
             st.session_state.messages.append({"role": "assistant", "content": output})

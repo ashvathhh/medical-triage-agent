@@ -1,7 +1,5 @@
 from langchain_groq import ChatGroq
-from langchain.agents import AgentExecutor, create_react_agent
-from langchain.memory import ConversationBufferMemory
-from langchain import hub
+from langgraph.prebuilt import create_react_agent
 from dotenv import load_dotenv
 from agent.tools import search_pubmed, check_drug_info, assess_urgency
 import os
@@ -17,22 +15,6 @@ def create_medical_agent():
 
     tools = [search_pubmed, check_drug_info, assess_urgency]
 
-    memory = ConversationBufferMemory(
-        memory_key="chat_history",
-        return_messages=True
-    )
+    agent = create_react_agent(llm, tools)
 
-    prompt = hub.pull("hwchase17/react-chat")
-
-    agent = create_react_agent(llm, tools, prompt)
-
-    agent_executor = AgentExecutor(
-        agent=agent,
-        tools=tools,
-        memory=memory,
-        verbose=True,
-        handle_parsing_errors=True,
-        max_iterations=5
-    )
-
-    return agent_executor
+    return agent
