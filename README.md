@@ -4,6 +4,8 @@ I built this because I kept reading about how much time doctors and nurses waste
 
 You describe a patient case. The agent figures out what it needs to know, searches real medical databases, checks drug warnings, and gives you a triage report. No hardcoded steps — it reasons its way through each case on its own.
 
+**Live demo:** https://medicaltriageagent.streamlit.app
+
 ---
 
 ## What it does
