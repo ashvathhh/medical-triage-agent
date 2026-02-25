@@ -1,0 +1,10 @@
+langchain
+langchain-groq
+langgraph
+streamlit
+pdfplumber
+requests
+python-dotenv
+langchainhub
+langchain-community
+langchain-core
